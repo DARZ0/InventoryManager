@@ -54,11 +54,13 @@ class ProductManager
 
     static void StockProduct()
     {
+        //funtion to add new product
         System.Console.WriteLine("Input Product Number");
         UInt32 productNumber = Convert.ToUInt32(Console.ReadLine());
         bool productExists = CheckIfProductExists(productNumber);
         if (productExists)
         {
+            //if product number already exists, this allows product to be restocked
             Console.WriteLine("How much would you like to restock");
             int restockAmount = Convert.ToInt32(Console.ReadLine());
             for (int i = 0; i < list.Count; i++)
@@ -93,6 +95,7 @@ class ProductManager
         }
         else
         {
+            //function used to store product information
             Product newPro = new Product();
             newPro.ProductNumber = productNumber;
             newPro.ProductName = newName;
@@ -106,6 +109,7 @@ class ProductManager
 
     static bool CheckIfProductExists(UInt32 productNumber)
     {
+        //checks if product number exists
         bool productExists = false;
         for (int i = 0; i <= list.Count - 1; i++)
         {
@@ -120,7 +124,7 @@ class ProductManager
 
     static void RemoveProduct()
     {
-
+        //checks if any product is available to remove
         if (list.Count == 0)
         {
             Console.WriteLine("No product available to remove.");
@@ -128,6 +132,7 @@ class ProductManager
         }
         else
         {
+            //lists products able to be removed
             Console.WriteLine("Here are your products.");
             for (int i = 0; i < list.Count; i++)
 
@@ -151,6 +156,7 @@ class ProductManager
             }
             else
             {
+                //removes product
                 list.RemoveAt(remove);
             }
         }
@@ -159,6 +165,7 @@ class ProductManager
 
     static void PurchaseProduct()
     {
+        //checks if any product is available to be purchased
         if (list.Count == 0)
         {
             Console.WriteLine("No products available to purchase.");
@@ -166,6 +173,7 @@ class ProductManager
         }
         else
         {
+            //lists products to purchase
             Console.WriteLine("Here are your products.");
             for (int i = 0; i < list.Count; i++)
             {
@@ -180,13 +188,14 @@ class ProductManager
             Console.WriteLine("Invalid purchase.");
             return;
         }
-
+        //check if product number exists to purchase
         bool productExists = CheckIfProductExists(productNumber);
         if (productExists == false)
         {
             Console.WriteLine("Sorry that product doesnt exist");
             return;
         }
+        //checks to see how much product is available to purchase
         Console.WriteLine("How many would you like to purchase?");
         int itemAmount = Convert.ToInt32(Console.ReadLine());
         for (int i = 0; i <= list.Count - 1; i++)
@@ -204,12 +213,14 @@ class ProductManager
 
     static void ViewProduct()
     {
+        //checks to see if any product is viewable
         if (list.Count == 0)
         {
             Console.WriteLine("You have no products.");
         }
         else
         {
+            //lists viewable product
             Console.WriteLine("Products: ");
             for (int i = 0; i < list.Count; i++)
             {
